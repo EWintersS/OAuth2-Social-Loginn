@@ -1,696 +1,348 @@
-\# 🔐 OAuth2 Social Login System
-
-
+# 🔐 OAuth2 Social Login System
 
 A full-stack MERN application implementing secure OAuth 2.0 authentication with Google and Facebook providers.
 
+## 📸 Features
 
-
-\## 📸 Features
-
-
-
-✅ \*\*Password-less Authentication\*\* - Sign in with Google/Facebook  
-
-✅ \*\*Account Linking\*\* - Connect multiple OAuth providers  
-
-✅ \*\*JWT Sessions\*\* - Secure httpOnly cookie-based authentication  
-
-✅ \*\*Protected Routes\*\* - Role-based access control  
-
-✅ \*\*Profile Management\*\* - Update user information  
-
-✅ \*\*Provider Management\*\* - Link/unlink OAuth accounts  
-
-✅ \*\*Responsive UI\*\* - Mobile-friendly React interface  
-
-✅ \*\*Secure by Default\*\* - CORS, CSRF protection, input validation  
-
-
+✅ **Password-less Authentication** - Sign in with Google/Facebook  
+✅ **Account Linking** - Connect multiple OAuth providers  
+✅ **JWT Sessions** - Secure httpOnly cookie-based authentication  
+✅ **Protected Routes** - Role-based access control  
+✅ **Profile Management** - Update user information  
+✅ **Provider Management** - Link/unlink OAuth accounts  
+✅ **Responsive UI** - Mobile-friendly React interface  
+✅ **Secure by Default** - CORS, CSRF protection, input validation  
 
 ---
 
+## 🏗️ Tech Stack
 
+### Frontend
+- **React 18** - UI library
+- **React Router v6** - Client-side routing
+- **Context API** - State management
+- **Axios** - HTTP client
+- **Tailwind CSS** - Styling
 
-\## 🏗️ Tech Stack
-
-
-
-\### Frontend
-
-\- \*\*React 18\*\* - UI library
-
-\- \*\*React Router v6\*\* - Client-side routing
-
-\- \*\*Context API\*\* - State management
-
-\- \*\*Axios\*\* - HTTP client
-
-\- \*\*Tailwind CSS\*\* - Styling
-
-
-
-\### Backend
-
-\- \*\*Node.js\*\* - Runtime
-
-\- \*\*Express\*\* - Web framework
-
-\- \*\*Passport.js\*\* - OAuth strategies
-
-\- \*\*MongoDB\*\* - Database
-
-\- \*\*Mongoose\*\* - ODM
-
-\- \*\*JWT\*\* - Token-based auth
-
-
+### Backend
+- **Node.js** - Runtime
+- **Express** - Web framework
+- **Passport.js** - OAuth strategies
+- **MongoDB** - Database
+- **Mongoose** - ODM
+- **JWT** - Token-based auth
 
 ---
 
+## 🚀 Quick Start
 
-
-\## 🚀 Quick Start
-
-
-
-\### Prerequisites
-
+### Prerequisites
 ```bash
-
 node >= 18.0.0
-
 npm >= 9.0.0
-
 mongodb >= 5.0
-
 ```
 
-
-
-\### 1. Clone Repository
-
+### 1. Clone Repository
 ```bash
-
 git clone <your-repo-url>
-
 cd oauth-login-project
-
 ```
 
-
-
-\### 2. Backend Setup
-
+### 2. Backend Setup
 ```bash
-
 cd server
-
 npm install
-
 cp .env.example .env
-
-\# Edit .env with your credentials
-
+# Edit .env with your credentials
 npm run dev
-
 ```
 
-
-
-\### 3. Frontend Setup
-
+### 3. Frontend Setup
 ```bash
-
 cd client
-
 npm install
-
-echo "VITE\_API\_URL=http://localhost:5000/api" > .env
-
+echo "VITE_API_URL=http://localhost:5000/api" > .env
 npm run dev
-
 ```
 
-
-
-\### 4. Access Application
-
-\- Frontend: http://localhost:5173
-
-\- Backend: http://localhost:5000
-
-
+### 4. Access Application
+- Frontend: http://localhost:5173
+- Backend: http://localhost:5000
 
 ---
 
+## 🔑 OAuth Credentials Setup
 
+### Google OAuth
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create project → Enable Google+ API
+3. Create OAuth 2.0 Client ID
+4. Add redirect URI: `http://localhost:5000/api/auth/google/callback`
+5. Copy Client ID and Secret to `.env`
 
-\## 🔑 OAuth Credentials Setup
-
-
-
-\### Google OAuth
-
-1\. Go to \[Google Cloud Console](https://console.cloud.google.com/)
-
-2\. Create project → Enable Google+ API
-
-3\. Create OAuth 2.0 Client ID
-
-4\. Add redirect URI: `http://localhost:5000/api/auth/google/callback`
-
-5\. Copy Client ID and Secret to `.env`
-
-
-
-\### Facebook OAuth
-
-1\. Go to \[Facebook Developers](https://developers.facebook.com/)
-
-2\. Create app → Add Facebook Login
-
-3\. Add redirect URI: `http://localhost:5000/api/auth/facebook/callback`
-
-4\. Copy App ID and Secret to `.env`
-
-
+### Facebook OAuth
+1. Go to [Facebook Developers](https://developers.facebook.com/)
+2. Create app → Add Facebook Login
+3. Add redirect URI: `http://localhost:5000/api/auth/facebook/callback`
+4. Copy App ID and Secret to `.env`
 
 ---
 
-
-
-\## 📁 Project Structure
-
-
+## 📁 Project Structure
 
 ```
-
 oauth-login-project/
-
 │
-
 ├── server/                      # Backend
-
 │   ├── config/
-
 │   │   └── passport.js         # OAuth strategies
-
 │   ├── models/
-
 │   │   └── User.js             # User model
-
 │   ├── routes/
-
 │   │   ├── auth.js             # Auth routes
-
 │   │   └── user.js             # User routes
-
 │   ├── middleware/
-
 │   │   └── auth.js             # JWT middleware
-
 │   ├── server.js               # Entry point
-
 │   ├── package.json
-
 │   └── .env
-
 │
-
 ├── client/                      # Frontend
-
 │   ├── src/
-
 │   │   ├── components/
-
 │   │   │   ├── Navbar.jsx
-
 │   │   │   └── ProtectedRoute.jsx
-
 │   │   ├── pages/
-
 │   │   │   ├── Home.jsx
-
 │   │   │   ├── Login.jsx
-
 │   │   │   ├── Dashboard.jsx
-
 │   │   │   └── Profile.jsx
-
 │   │   ├── context/
-
 │   │   │   └── AuthContext.jsx
-
 │   │   ├── utils/
-
 │   │   │   └── api.js
-
 │   │   ├── App.jsx
-
 │   │   └── main.jsx
-
 │   ├── package.json
-
 │   └── .env
-
 │
-
 └── README.md
-
 ```
-
-
 
 ---
 
+## 🔌 API Endpoints
 
-
-\## 🔌 API Endpoints
-
-
-
-\### Authentication
-
+### Authentication
 | Method | Endpoint | Description |
-
 |--------|----------|-------------|
-
 | GET | `/api/auth/google` | Initiate Google OAuth |
-
 | GET | `/api/auth/google/callback` | Google callback |
-
 | GET | `/api/auth/facebook` | Initiate Facebook OAuth |
-
 | GET | `/api/auth/facebook/callback` | Facebook callback |
-
 | POST | `/api/auth/logout` | Logout user |
-
 | GET | `/api/auth/status` | Check auth status |
 
-
-
-\### User (Protected)
-
+### User (Protected)
 | Method | Endpoint | Description |
-
 |--------|----------|-------------|
-
 | GET | `/api/user/profile` | Get user profile |
-
 | PUT | `/api/user/profile` | Update profile |
-
 | DELETE | `/api/user/provider/:provider` | Unlink provider |
 
-
-
 ---
 
-
-
-\## 🗄️ Database Schema
-
-
+## 🗄️ Database Schema
 
 ```javascript
-
 User {
-
-&nbsp; \_id: ObjectId
-
-&nbsp; email: String (unique, required)
-
-&nbsp; name: String (required)
-
-&nbsp; avatar: String
-
-&nbsp; providers: \[{
-
-&nbsp;   provider: 'google' | 'facebook'
-
-&nbsp;   providerId: String
-
-&nbsp;   email: String
-
-&nbsp;   connectedAt: Date
-
-&nbsp; }]
-
-&nbsp; role: 'user' | 'admin'
-
-&nbsp; lastLogin: Date
-
-&nbsp; createdAt: Date
-
-&nbsp; updatedAt: Date
-
+  _id: ObjectId
+  email: String (unique, required)
+  name: String (required)
+  avatar: String
+  providers: [{
+    provider: 'google' | 'facebook'
+    providerId: String
+    email: String
+    connectedAt: Date
+  }]
+  role: 'user' | 'admin'
+  lastLogin: Date
+  createdAt: Date
+  updatedAt: Date
 }
-
 ```
 
+---
 
+## 🔒 Security Features
+
+- ✅ **HttpOnly Cookies** - XSS protection
+- ✅ **CORS Configuration** - Origin whitelisting
+- ✅ **CSRF Protection** - SameSite cookies
+- ✅ **Input Validation** - Sanitization
+- ✅ **JWT Expiration** - Token lifecycle
+- ✅ **Secure Sessions** - MongoDB store
+- ✅ **HTTPS Required** - Production mode
+- ✅ **Rate Limiting** - Brute force prevention
 
 ---
 
+## 🧪 Testing
 
+### Test User Flow
+1. Visit http://localhost:5173
+2. Click "Login"
+3. Choose Google or Facebook
+4. Authorize application
+5. View Dashboard
+6. Edit Profile
+7. Link/Unlink accounts
+8. Logout
 
-\## 🔒 Security Features
-
-
-
-\- ✅ \*\*HttpOnly Cookies\*\* - XSS protection
-
-\- ✅ \*\*CORS Configuration\*\* - Origin whitelisting
-
-\- ✅ \*\*CSRF Protection\*\* - SameSite cookies
-
-\- ✅ \*\*Input Validation\*\* - Sanitization
-
-\- ✅ \*\*JWT Expiration\*\* - Token lifecycle
-
-\- ✅ \*\*Secure Sessions\*\* - MongoDB store
-
-\- ✅ \*\*HTTPS Required\*\* - Production mode
-
-\- ✅ \*\*Rate Limiting\*\* - Brute force prevention
-
-
+### Test Scenarios
+- ✅ First-time Google login
+- ✅ Returning user login
+- ✅ Account linking (Google + Facebook)
+- ✅ Profile update
+- ✅ Provider unlinking
+- ✅ Protected route access
+- ✅ Session persistence
 
 ---
 
+## 🐛 Troubleshooting
 
-
-\## 🧪 Testing
-
-
-
-\### Test User Flow
-
-1\. Visit http://localhost:5173
-
-2\. Click "Login"
-
-3\. Choose Google or Facebook
-
-4\. Authorize application
-
-5\. View Dashboard
-
-6\. Edit Profile
-
-7\. Link/Unlink accounts
-
-8\. Logout
-
-
-
-\### Test Scenarios
-
-\- ✅ First-time Google login
-
-\- ✅ Returning user login
-
-\- ✅ Account linking (Google + Facebook)
-
-\- ✅ Profile update
-
-\- ✅ Provider unlinking
-
-\- ✅ Protected route access
-
-\- ✅ Session persistence
-
-
-
----
-
-
-
-\## 🐛 Troubleshooting
-
-
-
-\### "Redirect URI mismatch"
-
-\*\*Solution:\*\* Ensure exact URIs in OAuth console:
-
+### "Redirect URI mismatch"
+**Solution:** Ensure exact URIs in OAuth console:
 ```
-
 http://localhost:5000/api/auth/google/callback
-
 http://localhost:5000/api/auth/facebook/callback
-
 ```
 
-
-
-\### CORS Errors
-
-\*\*Solution:\*\* Check `CLIENT\_URL` in backend `.env`:
-
+### CORS Errors
+**Solution:** Check `CLIENT_URL` in backend `.env`:
 ```env
-
-CLIENT\_URL=http://localhost:5173
-
+CLIENT_URL=http://localhost:5173
 ```
 
+### Session Not Persisting
+**Solution:** Ensure `withCredentials: true` in axios and cookies enabled
 
-
-\### Session Not Persisting
-
-\*\*Solution:\*\* Ensure `withCredentials: true` in axios and cookies enabled
-
-
-
-\### MongoDB Connection Failed
-
-\*\*Solution:\*\* Start MongoDB service:
-
+### MongoDB Connection Failed
+**Solution:** Start MongoDB service:
 ```bash
-
 mongod
-
-\# or
-
+# or
 docker run -d -p 27017:27017 mongo
-
 ```
-
-
 
 ---
 
+## 📦 Environment Variables
 
-
-\## 📦 Environment Variables
-
-
-
-\### Backend (.env)
-
+### Backend (.env)
 ```env
-
-NODE\_ENV=development
-
+NODE_ENV=development
 PORT=5000
-
-CLIENT\_URL=http://localhost:5173
-
-MONGO\_URI=mongodb://localhost:27017/oauth\_db
-
-JWT\_SECRET=your\_jwt\_secret\_here
-
-SESSION\_SECRET=your\_session\_secret\_here
-
-GOOGLE\_CLIENT\_ID=your\_google\_client\_id
-
-GOOGLE\_CLIENT\_SECRET=your\_google\_secret
-
-FACEBOOK\_APP\_ID=your\_facebook\_app\_id
-
-FACEBOOK\_APP\_SECRET=your\_facebook\_secret
-
+CLIENT_URL=http://localhost:5173
+MONGO_URI=mongodb://localhost:27017/oauth_db
+JWT_SECRET=your_jwt_secret_here
+SESSION_SECRET=your_session_secret_here
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_secret
+FACEBOOK_APP_ID=your_facebook_app_id
+FACEBOOK_APP_SECRET=your_facebook_secret
 ```
 
-
-
-\### Frontend (.env)
-
+### Frontend (.env)
 ```env
-
-VITE\_API\_URL=http://localhost:5000/api
-
+VITE_API_URL=http://localhost:5000/api
 ```
 
+---
 
+## 🚢 Deployment
+
+### Backend (Render/Railway/Heroku)
+1. Set all environment variables
+2. Update OAuth redirect URIs to production domain
+3. Set `NODE_ENV=production`
+4. Use MongoDB Atlas for database
+
+### Frontend (Vercel/Netlify)
+1. Update `VITE_API_URL` to production backend
+2. Build: `npm run build`
+3. Deploy `dist` folder
 
 ---
 
+## 📝 NPM Scripts
 
-
-\## 🚢 Deployment
-
-
-
-\### Backend (Render/Railway/Heroku)
-
-1\. Set all environment variables
-
-2\. Update OAuth redirect URIs to production domain
-
-3\. Set `NODE\_ENV=production`
-
-4\. Use MongoDB Atlas for database
-
-
-
-\### Frontend (Vercel/Netlify)
-
-1\. Update `VITE\_API\_URL` to production backend
-
-2\. Build: `npm run build`
-
-3\. Deploy `dist` folder
-
-
-
----
-
-
-
-\## 📝 NPM Scripts
-
-
-
-\### Backend
-
+### Backend
 ```json
-
 {
-
-&nbsp; "start": "node server.js",
-
-&nbsp; "dev": "nodemon server.js"
-
+  "start": "node server.js",
+  "dev": "nodemon server.js"
 }
-
 ```
 
-
-
-\### Frontend
-
+### Frontend
 ```json
-
 {
-
-&nbsp; "dev": "vite",
-
-&nbsp; "build": "vite build",
-
-&nbsp; "preview": "vite preview"
-
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview"
 }
-
 ```
 
+---
 
+## 🎓 Learning Resources
+
+- [Passport.js Docs](http://www.passportjs.org/)
+- [OAuth 2.0 RFC](https://tools.ietf.org/html/rfc6749)
+- [Google OAuth Guide](https://developers.google.com/identity/protocols/oauth2)
+- [Facebook Login Docs](https://developers.facebook.com/docs/facebook-login)
+- [JWT Best Practices](https://tools.ietf.org/html/rfc8725)
 
 ---
 
+## 🎯 Future Enhancements
 
-
-\## 🎓 Learning Resources
-
-
-
-\- \[Passport.js Docs](http://www.passportjs.org/)
-
-\- \[OAuth 2.0 RFC](https://tools.ietf.org/html/rfc6749)
-
-\- \[Google OAuth Guide](https://developers.google.com/identity/protocols/oauth2)
-
-\- \[Facebook Login Docs](https://developers.facebook.com/docs/facebook-login)
-
-\- \[JWT Best Practices](https://tools.ietf.org/html/rfc8725)
-
-
+- [ ] Add GitHub OAuth provider
+- [ ] Implement email/password fallback
+- [ ] Add two-factor authentication
+- [ ] Create admin dashboard
+- [ ] Add role-based permissions
+- [ ] Implement refresh tokens
+- [ ] Add activity logs
+- [ ] Email verification
 
 ---
 
-
-
-\## 🎯 Future Enhancements
-
-
-
-\- \[ ] Add GitHub OAuth provider
-
-\- \[ ] Implement email/password fallback
-
-\- \[ ] Add two-factor authentication
-
-\- \[ ] Create admin dashboard
-
-\- \[ ] Add role-based permissions
-
-\- \[ ] Implement refresh tokens
-
-\- \[ ] Add activity logs
-
-\- \[ ] Email verification
-
-
-
----
-
-
-
-\## 📄 License
-
-
+## 📄 License
 
 MIT License - Feel free to use this project for learning!
 
+---
 
+## 👨‍💻 Author
+
+**Your Name**  
+- GitHub: [@Harsh13912](https://github.com/Harsh13912)
+- Email: 23bcs13912@gmail.com
 
 ---
 
+## 🙏 Acknowledgments
 
-
-\## 👨‍💻 Author
-
-
-
-\*\*Your Name\*\*  
-
-\- GitHub: \[@Harsh13912](https://github.com/Harsh13912)
-
-\- Email: 23bcs13912@gmail.com
-
-
+- Passport.js team for OAuth strategies
+- MongoDB for database
+- React team for amazing UI library
+- Tailwind CSS for utility classes
 
 ---
 
-
-
-\## 🙏 Acknowledgments
-
-
-
-\- Passport.js team for OAuth strategies
-
-\- MongoDB for database
-
-\- React team for amazing UI library
-
-\- Tailwind CSS for utility classes
-
-
-
----
-
-
-
-\*\*⭐ Star this repo if you found it helpful!\*\*
-
+**⭐ Star this repo if you found it helpful!**
