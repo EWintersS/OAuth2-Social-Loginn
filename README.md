@@ -6,8 +6,8 @@ A full-stack MERN application implementing secure OAuth 2.0 authentication with 
 
 This project is successfully deployed and live\!
 
-  * **Live Frontend (Netlify):** **[https://oauthloginproject.netlify.app](https://www.google.com/url?sa=E&source=gmail&q=https://oauthloginproject.netlify.app)**
-  * **Live Backend (Render):** **[https://my-oauth-server.onrender.com/api/health](https://www.google.com/search?q=https://my-oauth-server.onrender.com/api/health)**
+  * **Live Frontend (Netlify):** **[https://oauthloginproject.netlify.app](https://oauthloginproject.netlify.app)**
+  * **Live Backend (Render):** **[https://my-oauth-server.onrender.com/api/health](https://my-oauth-server.onrender.com/api/health)**
   * **Database (MongoDB):** Hosted on **MongoDB Atlas**
 
 -----
@@ -273,3 +273,4 @@ VITE_API_URL=https://my-oauth-server.onrender.com/api
 -----
 
 **⭐ Star this repo if you found it helpful\!**
+
