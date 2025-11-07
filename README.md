@@ -266,11 +266,12 @@ VITE_API_URL=https://my-oauth-server.onrender.com/api
 
 ## 👨‍💻 Author
 
-**Your Name** - GitHub: [@Harsh13912](https://github.com/Harsh13912)
+**Your Name** - GitHub: 
 
-  - Email: 23bcs13912@gmail.com
+  - Email: 23bcs12075@cuchd.in, 23bcs11741@cuchd.in, 23bcs13871@
 
 -----
 
 **⭐ Star this repo if you found it helpful\!**
+
 
